@@ -87,16 +87,6 @@ def cardNumberChecker(cardInput): #Tamamlandı
         sg.popup("Invalid Card Number.")
         return False
 
-def logInDataChecker(num):
-    try:
-        if(userDetails[keyFinder(num)]["cardNo"] == window['cardInputLogIn'].get() and userDetails[keyFinder(num)]["password"] == window['passInputLogIn'].get()):
-            sg.popup("Logged In Successfully!")
-            return True
-        sg.popup("Invalid Card Number Or Password.")
-        return False
-    except:
-        sg.popup("Invalid Card Number Or Password.")
-        return False
 
 def createCardNumber(): #Tamamlandı
     generatedNumbers = ""
@@ -119,7 +109,18 @@ def createCardNumber(): #Tamamlandı
         print(f'Your Generated Card Number is \'{generatedNumbers}\'')
         return generatedNumbers
     except:
-        print("Your Card Number Has Been Sent As a Output.")
+        print("Card Number Can Not Generated.")
+        return False
+
+def logInDataChecker(num):
+    try:
+        if(userDetails[keyFinder(num)]["cardNo"] == window['cardInputLogIn'].get() and userDetails[keyFinder(num)]["password"] == window['passInputLogIn'].get()):
+            sg.popup("Logged In Successfully!")
+            return True
+        sg.popup("Invalid Card Number Or Password.")
+        return False
+    except:
+        sg.popup("Invalid Card Number Or Password.")
         return False
 
 def keyFinder(val):
@@ -155,13 +156,13 @@ while True:
             cardNumber = createCardNumber()
             user = account(window['idInput'].get(), window['nameInput'].get(), window['surnameInput'].get(), window['phoneInput'].get(), cardNumber, window['passInput'].get(), 500)
             userDetails[len(userDetails)] = {
-                "id" : window['idInput'].get(),
-                "name" : window['nameInput'].get(),
-                "surname" : window['surnameInput'].get(),
-                "p_number" : window['phoneInput'].get(),
-                "cardNo" : cardNumber,
-                "password" : window['passInput'].get(),
-                "balance" : 500
+                "id" : user.id,
+                "name" : user.name,
+                "surname" : user.surname,
+                "p_number" : user.p_number,
+                "cardNo" : user.cardNo,
+                "password" : user.password,
+                "balance" : user.balance
             }
 
 
