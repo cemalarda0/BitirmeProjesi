@@ -119,7 +119,7 @@ def createCardNumber(): #Tamamlandı
         print(f'Your Generated Card Number is \'{generatedNumbers}\'')
         return generatedNumbers
     except:
-        print("Card Number Can Not Generated.")
+        print("Your Card Number Has Been Sent As a Output.")
         return False
 
 def keyFinder(val):
